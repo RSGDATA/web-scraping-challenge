@@ -3,46 +3,30 @@ from bs4 import BeautifulSoup as bs
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 
+executable_path = {'executable_path': ChromeDriverManager().install()}
+browser = Browser('chrome', **executable_path, headless=True)
 
-def scrape():
-    # Set up Splinter
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
 
-    # Visit visitcostarica.herokuapp.com
-    url = "https://spaceimages-mars.com/"
-    browser.visit(url)
-
+def scrape_scan_image():
+    browser.visit("https://spaceimages-mars.com/")
     browser.find_by_tag('button')[1].click()
+    soup = bs(browser.html, 'html.parser')
+    soup.find('img', class_='fancybox-image').get('src')
+    img_url_rel = soup.find('img', class_='fancybox-image').get('src')
+    img_url_abs = f'https://spaceimages-mars.com/{img_url_rel}'
+    return img_url_abs
 
-    # time.sleep(1)
+def scrape_mars_title():
+    browser.visit("https://redplanetscience.com/")
+    soup = bs(browser.html, 'html.parser')
+    result = soup.find('div', class_='content_title')
+    title = result.text
+    return title
 
-    # Scrape page into Soup
-    html = browser.html
-    soup = bs(html, "html.parser")
+def scrape_mars_para():
+    browser.visit("https://redplanetscience.com/")
+    soup = bs(browser.html, 'html.parser')
+    result = soup.find('div', class_='article_teaser_body')
+    para = result.text
+    return para
 
-    # Get the average temps
-    avg_temps = soup.find('div', id='weather')
-
-    # Get the min avg temp
-    min_temp = avg_temps.find_all('strong')[0].text
-
-    # Get the max avg temp
-    max_temp = avg_temps.find_all('strong')[1].text
-
-    # BONUS: Find the src for the sloth image
-    relative_image_path = soup.find_all('img')[2]["src"]
-    sloth_img = url + relative_image_path
-
-    # Store data in a dictionary
-    mars_data = {
-        "sloth_img": sloth_img,
-        "min_temp": min_temp,
-        "max_temp": max_temp
-    }
-
-    # Close the browser after scraping
-    browser.quit()
-
-    # Return results
-    return mars_data

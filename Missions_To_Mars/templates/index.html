@@ -5,27 +5,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mars Data</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="jumbotron text-center">
+   
+  <!-- ROW 1 (Header + scrape button) -->
+  <div class="jumbotron text-center row">
       <h1>Mission to Mars</h1>
-      <p></p>
+       <p></p>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-      
-    </div>
-    <h3>Latest Mars News</h3>
-    <b>NASA's MArs Rover Drivers Need Your Help</b>
-    <p>Using an online tool to label Matian terain types, you can train an artificial intelligence algorithm that could improve the way engineers quide the Curiosity rover</p>
-    <!-- <img src="{{ vacation.sloth_img }}" alt="Sloth"> -->
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
   </div>
-  </div>
-</body>
 
+  <!-- ROW 2 (article+image | table) -->
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Latest Mars News</h3>
+      <b>{{mars_title}}</b>
+      <p>{{mars_para}}</p>
+      <img width="100%" src="{{ image_link }}" alt="Mars Scan Image">
+    </div>
+
+    <div class="col-xs-6">
+      <table class="table table-striped">
+        <thead>
+          <tr style="text-align: right;">
+            <th></th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>0</th>
+            <td>Mars - Earth Comparison</td>
+            <td>Mars</td>
+            <td>Earth</td>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>Diameter:</td>
+            <td>6,779 km</td>
+            <td>12,742 km</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>Mass:</td>
+            <td>6.39 × 10^23 kg</td>
+            <td>5.97 × 10^24 kg</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>Moons:</td>
+            <td>2</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td>Distance from Sun:</td>
+            <td>227,943,824 km</td>
+            <td>149,598,262 km</td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td>Length of Year:</td>
+            <td>687 Earth days</td>
+            <td>365.24 days</td>
+          </tr>
+          <tr>
+            <th>6</th>
+            <td>Temperature:</td>
+            <td>-87 to -5 °C</td>
+            <td>-88 to 58°C</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ROW 3 (hemisphere title) -->
+  <div class = "row">
+    <center><h3>Mars Hemispheres</h3></center>
+  </div>
+  <!-- ROW 4 (hemisphere images) -->
+  <div class="row">
+      <div class="col-xs-3">
+        <image width="100%" src="https://marshemispheres.com/images/full.jpg" alt="Cerberus Hemisphere"></image>
+        <h4>Cerberus Hemisphere Enhanced</h4>
+      </div>
+      <div class="col-xs-3">
+        <image width="100%" src="https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg" alt="..."></image>
+        <h4>Schiaparelli Hemisphere Enhanced</h4>
+      </div>
+      <div class="col-xs-3">
+        <image width="100%" src="https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg" alt="..."></image>
+        <h4>Syrtis Major Hemisphere Enhanced</h4>
+      </div>
+      <div class="col-xs-3">
+        <image width="100%" src="https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg" alt="..."></image>
+        <h4>Valles Marineris Hemisphere Enhanced</h4>
+      </div>
+    </div>
+
+  
+
+</div>
+</body>
 </html>
+
+
+
+<!-- [{'img_url': 
+  'https://marshemispheres.com/images/full.jpg', 
+  'title': 'Cerberus Hemisphere Enhanced'}, 
+  {'img_url': 'https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg', 
+  'title': 'Schiaparelli Hemisphere Enhanced'}, 
+  {'img_url': 'https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg', 
+  'title': 'Syrtis Major Hemisphere Enhanced'}, 
+  {'img_url': 'https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg', 
+  'title': 'Valles Marineris Hemisphere Enhanced'}]
+ -->
